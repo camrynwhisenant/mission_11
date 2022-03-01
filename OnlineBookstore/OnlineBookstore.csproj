@@ -21,6 +21,7 @@
     <None Remove="Views\Shared\Components\" />
     <None Remove="Views\Shared\Components\Types\" />
     <None Remove="Pages\" />
+    <None Remove="Views\Purchase\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bower" Version="1.3.11" />
@@ -47,5 +48,6 @@
     <Folder Include="Views\Shared\Components\" />
     <Folder Include="Views\Shared\Components\Types\" />
     <Folder Include="Pages\" />
+    <Folder Include="Views\Purchase\" />
   </ItemGroup>
 </Project>

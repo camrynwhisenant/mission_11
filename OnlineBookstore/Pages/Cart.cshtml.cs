@@ -13,9 +13,10 @@ namespace OnlineBookstore.Pages
     public class CartModel : PageModel
     {
         private IBookstoreRespository repo { get; set; }
-        public CartModel(IBookstoreRespository temp)
+        public CartModel(IBookstoreRespository temp, Cart c)
         {
             repo = temp;
+            cart = c;
         }
         public string ReturnUrl { get; set; }
 
@@ -23,15 +24,22 @@ namespace OnlineBookstore.Pages
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
-            cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+            //cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
         public IActionResult OnPost(int bookId, string returnUrl)
         {
             Books b = repo.Books.FirstOrDefault(x => x.BookId == bookId);
-            cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+            //cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
             cart.AddItem(b, 1);
 
-            HttpContext.Session.SetJson("cart", cart);
+
+            //HttpContext.Session.SetJson("cart", cart);
+            return RedirectToPage(new { ReturnUrl = returnUrl });
+
+        }
+        public IActionResult OnPostRemove(int bookId, string returnUrl)
+        {
+            cart.RemoveItem(cart.Items.First(x => x.Book.BookId == bookId).Book);
             return RedirectToPage(new { ReturnUrl = returnUrl });
 
         }

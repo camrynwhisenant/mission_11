@@ -20,6 +20,8 @@ namespace OnlineBookstore.Models
         }
 
         public DbSet<Books> Books { get; set; }
+        //allows purchases to set to database
+        public DbSet<Purchase> Purchases { get; set; }
     }
 }
 
