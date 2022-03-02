@@ -22,6 +22,8 @@
     <None Remove="Views\Shared\Components\Types\" />
     <None Remove="Pages\" />
     <None Remove="Views\Purchase\" />
+    <None Remove="FontAwesome" />
+    <None Remove="Views\Shared\Components\CartSummary\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bower" Version="1.3.11" />
@@ -35,6 +37,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.22" />
+    <PackageReference Include="FontAwesome" Version="3.1.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -49,5 +52,6 @@
     <Folder Include="Views\Shared\Components\Types\" />
     <Folder Include="Pages\" />
     <Folder Include="Views\Purchase\" />
+    <Folder Include="Views\Shared\Components\CartSummary\" />
   </ItemGroup>
 </Project>

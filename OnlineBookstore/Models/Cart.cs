@@ -33,12 +33,17 @@ namespace OnlineBookstore.Models
         //calculate total for Items
         public double CalculateTotal()
         {
-            double sum = Items.Sum(x => x.Quantity * 10);
+            double sum = Items.Sum(x => x.Quantity * x.Book.Price);
             return sum;
         }
 
-        //remove books from cart
-        public virtual void RemoveItem(Books book)
+    //    public decimal ComputeTotalValue() =>
+    //Lines.Sum(e => e.Product.Price * e.Quantity);
+    //    public void Clear() => Lines.Clear();
+    //}
+
+    //remove books from cart
+    public virtual void RemoveItem(Books book)
         {
             Items.RemoveAll(x => x.Book.BookId == book.BookId);
         }
