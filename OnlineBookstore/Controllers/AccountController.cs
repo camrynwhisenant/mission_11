@@ -10,6 +10,7 @@ using OnlineBookstore.Models.ViewModels;
 
 namespace OnlineBookstore.Controllers
 {
+    //controller where user will be able to login in and logout
     public class AccountController : Controller
     {
         private UserManager<IdentityUser> userManager;
@@ -54,6 +55,7 @@ namespace OnlineBookstore.Controllers
 
         }
 
+        //logout feature
         public async Task<RedirectResult> Logut (string returnUrl = "/")
         {
             await signInManager.SignOutAsync();

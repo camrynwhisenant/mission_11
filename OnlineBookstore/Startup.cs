@@ -76,7 +76,7 @@ namespace OnlineBookstore
             app.UseRouting();
             app.UseAuthentication();
             
-
+            //important for login and logout
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

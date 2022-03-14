@@ -9,7 +9,7 @@ namespace OnlineBookstore.Models
 {
     public static class IdentitySeedData
     {
-
+        //Seed Data data for initial login
         private const string adminUser = "Admin";
         private const string adminPassword = "413ExtraYeetPeriod(t)!";
 
