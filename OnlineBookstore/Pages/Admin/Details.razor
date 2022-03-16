@@ -1,0 +1,40 @@
+﻿@*shows details for each book*@
+@page "/admin/books/details/{id:long}"
+
+<h3 class="bg-info text-white text-center p-1">Details</h3>
+<table class="table table-sm table-bordered table-striped">
+    <tbody>
+        <tr><th>BookId: </th><td>@p.BookId</td></tr>
+        <tr><th>Title: </th><td>@p.Title</td></tr>
+        <tr><th>Author: </th><td>@p.Author</td></tr>
+        <tr><th>Publisher: </th><td>@p.Publisher</td></tr>
+        <tr><th>ISBN: </th><td>@p.Isbn</td></tr>
+        <tr><th>Classification: </th><td>@p.Classification</td></tr>
+        <tr><th>Category: </th><td>@p.Category</td></tr>
+        <tr><th>Page Count: </th><td>@p.PageCount</td></tr>
+        <tr><th>Price: </th><td>@p.Price</td></tr>
+    </tbody>
+
+</table>
+
+@*links to save the edits or go back*@
+<NavLink class="btn btn-warning" href="@EditUrl">Edit</NavLink>
+<NavLink class="btn btn-secondary" href="/admin/books">Back</NavLink>
+
+@code {
+    [Inject]
+    public IBookstoreRespository repo { get; set; }
+
+    [Parameter]
+    public long Id { get; set; }
+
+    public Models.Books p { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        p = repo.Books.FirstOrDefault(x => x.BookId == Id);
+    }
+
+
+    public string EditUrl => $"/admin/books/edit/{p.BookId}";
+}
