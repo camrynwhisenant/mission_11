@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +35,10 @@ namespace OnlineBookstore
 
             });
             services.AddScoped<IBookstoreRespository, EFBookstoreRepository>();
+            services.AddScoped<Cart>(x => SessionCart.GetCart(x));
+            services.AddScoped<IPurchaseRepository, EFPurchaseRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 
             services.AddRazorPages();
             services.AddDistributedMemoryCache();

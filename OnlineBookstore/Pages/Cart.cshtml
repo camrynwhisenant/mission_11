@@ -2,7 +2,6 @@
 @model OnlineBookstore.Pages.CartModel
 @{
 }
-
 <h2>Your Cart</h2>
 <table class="table table-bordered table-striped">
     <thead>
@@ -14,13 +13,21 @@
         </tr>
     </thead>
     <tbody>
+        @*lists each item in your cart*@ 
         @foreach (var i in Model.cart.Items)
         {
             <tr>
                 <td>@i.Book.Title</td>
                 <td>@i.Quantity</td>
-                <td>10</td>
-                <td>@(i.Quantity * 10)</td>
+                <td>$@i.Book.Price</td>
+                <td>@((i.Quantity * i.Book.Price).ToString("c"))</td>
+                <td class="text-center">
+                    <form method="post" asp-page-handler="Remove">
+                        <input type="hidden" name="bookId" value="@i.Book.BookId" />
+                        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                        <button class="btn btn-sm btn-danger">Remove</button>
+                    </form>
+                </td>
             </tr>
         }
 
@@ -33,4 +40,7 @@
     </tfoot>
 </table>
 <div>
-    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping</a></div>
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping</a>
+    <a class="btn btn-primary" asp-action="Checkout" asp-controller="Purchase">Checkout</a>
+
+</div>
