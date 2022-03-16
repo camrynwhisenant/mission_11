@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,6 +35,15 @@ namespace OnlineBookstore
                 options.UseSqlite(Configuration.GetConnectionString("BookstoreDBConnection"));
 
             });
+
+            services.AddDbContext<AppIdentityDBContext>(options => {
+
+                options.UseSqlite(Configuration.GetConnectionString("IdentityConnection"));
+
+            });
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDBContext>();
+
             services.AddScoped<IBookstoreRespository, EFBookstoreRepository>();
             services.AddScoped<Cart>(x => SessionCart.GetCart(x));
             services.AddScoped<IPurchaseRepository, EFPurchaseRepository>();
@@ -64,7 +74,9 @@ namespace OnlineBookstore
             app.UseStaticFiles();
             app.UseSession();
             app.UseRouting();
-
+            app.UseAuthentication();
+            
+            //important for login and logout
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -95,6 +107,8 @@ namespace OnlineBookstore
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
             });
+
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }

@@ -22,14 +22,21 @@
     </div>
             <div class="row m-1 p-1">
                 <div id="categories" class="col-3">
-                 
+                    <span class="glyphicon glyphicon-search"></span>
                     <vc:types></vc:types>
                 </div>
                 <div class="col-9">
                     @RenderBody()
                 </div>      
     </div>
-                    <footer></footer>
+            <footer>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                         aria-valuemin="0" aria-valuemax="100" style="width:65%">
+                        <span class="sr-only">65% Complete</span>
+                    </div>
+                </div>
+            </footer>
 
 </body>
 </html>

@@ -25,6 +25,8 @@
     <None Remove="FontAwesome" />
     <None Remove="Views\Shared\Components\CartSummary\" />
     <None Remove="Pages\Admin\" />
+    <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <None Remove="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bower" Version="1.3.11" />
@@ -39,6 +41,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.22" />
     <PackageReference Include="FontAwesome" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.22" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -55,5 +58,14 @@
     <Folder Include="Views\Purchase\" />
     <Folder Include="Views\Shared\Components\CartSummary\" />
     <Folder Include="Pages\Admin\" />
+    <Folder Include="Views\Account\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Bookstore.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Identity.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
